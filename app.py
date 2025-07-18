@@ -22,13 +22,13 @@ from fastapi.staticfiles import StaticFiles
 shanghai_tz = pytz.timezone("Asia/Shanghai")
 
 credentials = json.load(open("credentials.json"))
-OPENAI_API_KEY = credentials["OPENAI_API_KEY"]
+API_KEY = credentials["API_KEY"]
 BASE_URL = credentials["BASE_URL"]
 
-client = AsyncOpenAI(api_key=OPENAI_API_KEY, base_url=BASE_URL)
+client = AsyncOpenAI(api_key=API_KEY, base_url=BASE_URL)
 
-if OPENAI_API_KEY.startswith("sk-REPLACE_ME"):
-    raise RuntimeError("请在环境变量里配置 OPENAI_API_KEY")
+if API_KEY.startswith("sk-REPLACE_ME"):
+    raise RuntimeError("请在环境变量里配置 API_KEY")
 
 templates = Jinja2Templates(directory="templates")
 
@@ -148,7 +148,7 @@ async def read_index(request: Request):
 # -----------------------------------------------------------------------
 # 4. 本地启动命令
 # -----------------------------------------------------------------------
-# uvicorn main:app --reload --host 0.0.0.0 --port 8000
+# uvicorn app:app --reload --host 0.0.0.0 --port 8000
 
 
 if __name__ == '__main__':
