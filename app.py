@@ -12,7 +12,7 @@ from pydantic import BaseModel
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
-
+from google import genai
 
 # -----------------------------------------------------------------------
 # 0. 配置
@@ -21,9 +21,16 @@ shanghai_tz = pytz.timezone("Asia/Shanghai")
 
 credentials = json.load(open("credentials.json"))
 API_KEY = credentials["API_KEY"]
-BASE_URL = credentials["BASE_URL"]
+BASE_URL = credentials.get("BASE_URL", "")
 
-client = AsyncOpenAI(api_key=API_KEY, base_url=BASE_URL)
+if API_KEY.startswith("sk-"):
+    client = AsyncOpenAI(api_key=API_KEY, base_url=BASE_URL)
+    USE_GEMINI = False
+else:
+    import os
+    os.environ["GEMINI_API_KEY"] = API_KEY
+    gemini_client = genai.Client()
+    USE_GEMINI = True
 
 if API_KEY.startswith("sk-REPLACE_ME"):
     raise RuntimeError("请在环境变量里配置 API_KEY")
@@ -67,30 +74,57 @@ async def llm_event_stream(
 **请保证任何一个元素都在一个2k分辨率的容器中被摆在了正确的位置，避免穿模，字幕遮挡，图形位置错误等等问题影响正确的视觉传达**
 html+css+js+svg，放进一个html里"""
 
+    if USE_GEMINI:
+        try:
+            full_prompt = system_prompt + "\n\n" + topic
+            if history:
+                history_text = "\n".join([f"{msg['role']}: {msg['content']}" for msg in history])
+                full_prompt = history_text + "\n\n" + full_prompt
+            
+            response = await asyncio.get_event_loop().run_in_executor(
+                None, 
+                lambda: gemini_client.models.generate_content(
+                    model="gemini-2.0-flash-exp", 
+                    contents=full_prompt
+                )
+            )
+            
+            text = response.text
+            chunk_size = 50
+            
+            for i in range(0, len(text), chunk_size):
+                chunk = text[i:i+chunk_size]
+                payload = json.dumps({"token": chunk}, ensure_ascii=False)
+                yield f"data: {payload}\n\n"
+                await asyncio.sleep(0.05)
+                
+        except Exception as e:
+            yield f"data: {json.dumps({'error': str(e)})}\n\n"
+            return
+    else:
+        messages = [
+            {"role": "system", "content": system_prompt},
+            *history,
+            {"role": "user", "content": topic},
+        ]
 
-    messages = [
-        {"role": "system", "content": system_prompt},
-        *history,
-        {"role": "user", "content": topic},
-    ]
+        try:
+            response = await client.chat.completions.create(
+                model=model,
+                messages=messages,
+                stream=True,
+                temperature=0.8, 
+            )
+        except OpenAIError as e:
+            yield f"data: {json.dumps({'error': str(e)})}\n\n"
+            return
 
-    try:
-        response = await client.chat.completions.create(
-            model=model,
-            messages=messages,
-            stream=True,
-            temperature=0.8, 
-        )
-    except OpenAIError as e:
-        yield f"data: {json.dumps({'error': str(e)})}\n\n"
-        return
-
-    async for chunk in response:
-        token = chunk.choices[0].delta.content or ""
-        if token:
-            payload = json.dumps({"token": token}, ensure_ascii=False)
-            yield f"data: {payload}\n\n"
-            await asyncio.sleep(0.001)
+        async for chunk in response:
+            token = chunk.choices[0].delta.content or ""
+            if token:
+                payload = json.dumps({"token": token}, ensure_ascii=False)
+                yield f"data: {payload}\n\n"
+                await asyncio.sleep(0.001)
 
     yield 'data: {"event":"[DONE]"}\n\n'
 

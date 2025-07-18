@@ -79,7 +79,7 @@
 
 * Python 3.9+  
 * 一个现代网络浏览器 (如 Chrome, Firefox, Edge)  
-* 大语言模型的 API 密钥。我们推荐您使用 Google Gemini 2.5，但当前版本仅提供 OpenAI SDK 格式，您可以使用 OpenRouter、One API 或其他中转服务来调用它。  
+* 大语言模型的 API 密钥。我们推荐您使用 Google Gemini 2.5。  
 
 ### 安装与运行
 
