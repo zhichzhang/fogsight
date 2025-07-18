@@ -1,16 +1,14 @@
 import asyncio
 import json
-import logging
 from datetime import datetime
 from typing import AsyncGenerator, List, Optional
-logging.getLogger("sqlalchemy.engine").setLevel(logging.WARNING)
 
 import pytz
 from fastapi import FastAPI, Request
 from fastapi.responses import StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
 from openai import AsyncOpenAI, OpenAIError
-from pydantic import BaseModel # NEW: Import Pydantic's BaseModel
+from pydantic import BaseModel
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
@@ -62,16 +60,12 @@ async def llm_event_stream(
     # The system prompt is now more focused
     system_prompt = f"""请你生成一个非常精美的动态动画,讲讲 {topic}
 要动态的,要像一个完整的,正在播放的视频。包含一个完整的过程，能把知识点讲清楚。
-请假设你的受众没有任何预先的知识
 页面极为精美，好看，有设计感，同时能够很好的传达知识。知识和图像要准确
-附带一些旁白式的文字解说,从头到尾讲清楚一个小的知识点。
+附带一些旁白式的文字解说,从头到尾讲清楚一个小的知识点
 不需要任何互动按钮,直接开始播放
-使用和谐好看，广泛采用的浅色配色方案，使用很多的，丰富的视觉元素
-视频一定要完整，把整件事讲完
-要有电影感，双语字幕
-html+css+js+svg，放进一个html里
-**请保证任何一个元素都被摆在了正确的位置，避免穿模，字幕遮挡，图形位置错误等等问题影响正确的视觉传达**
-Ensure the animation canvas and layout are fully responsive but natively optimized for 1920×1080 resolution (16:9 aspect ratio, landscape)."""
+使用和谐好看，广泛采用的浅色配色方案，使用很多的，丰富的视觉元素。双语字幕
+**请保证任何一个元素都在一个2k分辨率的容器中被摆在了正确的位置，避免穿模，字幕遮挡，图形位置错误等等问题影响正确的视觉传达**
+html+css+js+svg，放进一个html里"""
 
 
     messages = [
