@@ -26,7 +26,19 @@ BASE_URL = credentials.get("BASE_URL", "")
 MODEL = credentials.get("MODEL", "gemini-2.5-pro")
 
 if API_KEY.startswith("sk-"):
-    client = AsyncOpenAI(api_key=API_KEY, base_url=BASE_URL)
+    # 为 OpenRouter 添加应用标识
+    extra_headers = {}
+    if "openrouter.ai" in BASE_URL.lower():
+        extra_headers = {
+            "HTTP-Referer": "https://github.com/fogsightai/fogsight",
+            "X-Title": "Fogsight - AI Animation Generator"
+        }
+    
+    client = AsyncOpenAI(
+        api_key=API_KEY, 
+        base_url=BASE_URL,
+        default_headers=extra_headers
+    )
     USE_GEMINI = False
 else:
     os.environ["GEMINI_API_KEY"] = API_KEY
