@@ -137,7 +137,7 @@
    # {
    #   "API_KEY": "sk-or-v1-您的OpenRouter密钥",
    #   "BASE_URL": "https://openrouter.ai/api/v1",
-   #   "MODEL": "anthropic/claude-3-sonnet-20240229"
+   #   "MODEL": "anthropic/claude-sonnet-4"
    # }
    
    # 使用 Gemini 的配置示例：
@@ -156,6 +156,8 @@
    # 或者指定自定义端口（例如 3000）
    HOST_PORT=3000 docker-compose up -d
    ```
+   
+   如果 Docker 镜像无法拉取，可以尝试使用代理，或者使用镜像的国内源。
 
 5. **访问应用:**
    打开浏览器访问 `http://localhost:8000`（或您指定的端口）
