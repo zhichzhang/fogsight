@@ -4,5 +4,5 @@ pydantic
 openai
 jinja2
 pytz
-google-generativeai
+google-genai
 requests
