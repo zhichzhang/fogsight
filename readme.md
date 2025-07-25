@@ -169,31 +169,7 @@
 
 ## OpenRouter 支持
 
-Fogsight 完全支持 OpenRouter，让您可以使用各种优秀的大语言模型：
-
-### 支持的模型示例：
-- **Anthropic Claude**: `anthropic/claude-3-sonnet-20240229`, `anthropic/claude-3-opus-20240229`
-- **OpenAI GPT**: `openai/gpt-4-turbo`, `openai/gpt-3.5-turbo`
-- **Google Gemini**: `google/gemini-pro-1.5`, `google/gemini-pro`
-- **Meta Llama**: `meta-llama/llama-3-70b-instruct`
-- **其他模型**: 访问 [OpenRouter Models](https://openrouter.ai/models) 查看完整列表
-
-### 配置方法：
-1. 在 [OpenRouter](https://openrouter.ai/) 注册并获取 API 密钥
-2. 编辑 `credentials.json`:
-   ```json
-   {
-     "API_KEY": "sk-or-v1-你的OpenRouter密钥",
-     "BASE_URL": "https://openrouter.ai/api/v1",
-     "MODEL": "anthropic/claude-3-sonnet-20240229"
-   }
-   ```
-3. 启动应用即可使用指定的模型
-
-### 优势：
-- 🌟 **多模型选择**: 一个接口访问多种顶级模型
-- 💰 **价格透明**: 通常比官方 API 更有竞争力
-- 🚀 **无缝切换**: 只需修改配置文件中的 MODEL 字段
+Fogsight 完全支持 OpenRouter，但是我们只推荐您使用Google Gemini 2.5 pro模型。
 
 ## 联系我们/加入群聊
 
