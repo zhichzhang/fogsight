@@ -47,6 +47,13 @@ body.show-chat-view .chat-view { display: flex; flex-direction: column; height: 
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
+button:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+  border-color: #bbb; /* 可选 */
+  opacity: 0.8;       /* 可选 */
+}
 
 .initial-view { height: 100vh; flex-direction: column; justify-content: center; align-items: center; padding: 2rem; position: relative; box-sizing: border-box; }
 #logo-initial { position: absolute; top: 2.5rem; left: 2.5rem; }
@@ -100,7 +107,7 @@ body.show-chat-view .chat-view { display: flex; flex-direction: column; height: 
 .icon-code, .icon-chevron, .action-button svg { width: 1.2em; height: 1.2em; stroke: currentColor; stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 .icon-chevron { color: var(--text-secondary); transition: transform 0.2s; }
 .code-details[open] .icon-chevron { transform: rotate(180deg); }
-.code-content { padding: 0 1rem 1rem; }
+.code-content { padding: 0 1rem 1rem; max-height: 25vh; overflow-y: auto;}
 .code-content pre { margin: 0; padding: 1rem; background: #1C1C1E; border-radius: 12px; color: #EBEBF599; font-family: 'SF Mono', 'Menlo', monospace; font-size: 0.9rem; line-height: 1.6; overflow-x: auto; }
 .code-content code { white-space: pre-wrap; word-break: break-all; }
 .code-content code span { display: inline; animation: tokenFadeIn 0.3s forwards; opacity: 0; }

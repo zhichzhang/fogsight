@@ -74,9 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const topic = input.value.trim();
         if (!topic) return;
 
-        submitButton.disabled = true;
-        submitButton.classList.add('disabled');
-
         if (isInitial) switchToChatView();
 
         conversationHistory.push({ role: 'user', content: topic });
@@ -88,6 +85,11 @@ document.addEventListener('DOMContentLoaded', () => {
     async function startGeneration(topic) {
         appendUserMessage(topic);
         const agentThinkingMessage = appendAgentStatus(translations.agentThinking[currentLang]);
+        const submitButton = document.querySelector('.submit-button');
+        if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.classList.add('disabled');
+        }
         accumulatedCode = '';
         let inCodeBlock = false;
         let codeBlockElement = null;
@@ -118,11 +120,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     const jsonStr = line.substring(6);
                     if (jsonStr.includes('[DONE]')) {
+                        console.log('Streaming complete');
                         conversationHistory.push({ role: 'assistant', content: accumulatedCode });
                         if (codeBlockElement) {
+                            console.log('Animation code exists.');
+                            if (!isHtmlContentValid(accumulatedCode)) {
+                                console.log(accumulatedCode)
+                                throw new Error('Invalid HTML content received.');
+                            }
                             markCodeAsComplete(codeBlockElement);
                             if (accumulatedCode) appendAnimationPlayer(accumulatedCode, topic);
                         }
+                        scrollToBottom();
                         return;
                     }
 
@@ -202,7 +211,15 @@ document.addEventListener('DOMContentLoaded', () => {
         span.textContent = text;
         codeElement.appendChild(span);
         accumulatedCode += text;
-        scrollToBottom();
+        
+        const codeContent = codeElement.closest('.code-content');
+        if (codeContent) {
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    codeContent.scrollTop = codeContent.scrollHeight;
+                });
+            });
+        }
     }
 
     function markCodeAsComplete(codeBlockElement) {
@@ -211,6 +228,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function appendAnimationPlayer(htmlContent, topic) {
+        console.log('Appending animation player with topic:', topic);
         const node = templates.player.content.cloneNode(true);
         const playerElement = node.firstElementChild;
         playerElement.querySelectorAll('[data-translate-key]').forEach(el => {
@@ -240,6 +258,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         chatLog.appendChild(playerElement);
         scrollToBottom();
+    }
+
+    function isHtmlContentValid(htmlContent) {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(htmlContent, "text/html");
+
+        // 检查是否存在解析错误
+        const parseErrors = doc.querySelectorAll("parsererror");
+        if (parseErrors.length > 0) {
+            console.warn("HTML 解析失败：", parseErrors[0].textContent);
+            return false;
+        }
+
+        // 可选：检测是否有 <html><body> 结构或是否为空
+        if (!doc.body || doc.body.innerHTML.trim() === "") {
+            console.warn("HTML 内容为空");
+            return false;
+        }
+
+        return true;
     }
 
     const scrollToBottom = () => chatLog.scrollTo({ top: chatLog.scrollHeight, behavior: 'smooth' });
