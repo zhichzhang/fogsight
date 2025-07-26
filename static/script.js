@@ -31,7 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
         visitGitHub: { zh: "访问 GitHub", en: "Visit GitHub" },
         errorMessage: { zh: "抱歉，服务出现了一点问题。请稍后重试。", en: "Sorry, something went wrong. Please try again later." },
         errorFetchFailed: {zh: "LLM服务不可用，请稍后再试", en: "LLM service is unavailable. Please try again later."},
-        errorTooManyRequests: {zh: "今天已经使用太多，请明天再试", en: "Too many requests today. Please try again tomorrow."}
+        errorTooManyRequests: {zh: "今天已经使用太多，请明天再试", en: "Too many requests today. Please try again tomorrow."},
+        errorLLMParseError: {zh: "返回的动画代码解析失败，请调整提示词重新生成。", en: "Failed to parse the returned animation code. Please adjust your prompt and try again."},
     };
 
     let currentLang = config.defaultLang;
@@ -55,6 +56,14 @@ document.addEventListener('DOMContentLoaded', () => {
         player: document.getElementById('animation-player-template'),
         error: document.getElementById('agent-error-template'),
     };
+
+    class LLMParseError extends Error {
+        constructor(message, code = 'LLM_UNKNOWN_ERROR') {
+            super(message);
+            this.name = 'LLMParseError';
+            this.code = code;
+        }
+    }
 
     let conversationHistory = [];
     let accumulatedCode = '';
@@ -83,6 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function startGeneration(topic) {
+        console.log('Getting generation from backend.');
         appendUserMessage(topic);
         const agentThinkingMessage = appendAgentStatus(translations.agentThinking[currentLang]);
         const submitButton = document.querySelector('.submit-button');
@@ -122,22 +132,42 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (jsonStr.includes('[DONE]')) {
                         console.log('Streaming complete');
                         conversationHistory.push({ role: 'assistant', content: accumulatedCode });
-                        if (codeBlockElement) {
-                            console.log('Animation code exists.');
-                            if (!isHtmlContentValid(accumulatedCode)) {
-                                console.log(accumulatedCode)
-                                throw new Error('Invalid HTML content received.');
+
+                        if (!codeBlockElement) {
+                            console.warn('No code block element created. Full response:', accumulatedCode);
+                            throw new LLMParseError('LLM did not return a complete code block.');
+                        }
+
+                        if (!isHtmlContentValid(accumulatedCode)) {
+                            console.warn('Invalid HTML received:\n', accumulatedCode);
+                            throw new LLMParseError('Invalid HTML content received.');
+                        }
+
+                        markCodeAsComplete(codeBlockElement);
+
+                        try {
+                            if (accumulatedCode) {
+                                appendAnimationPlayer(accumulatedCode, topic);
                             }
-                            markCodeAsComplete(codeBlockElement);
-                            if (accumulatedCode) appendAnimationPlayer(accumulatedCode, topic);
+                        } catch (err) {
+                            console.error('appendAnimationPlayer failed:', err);
+                            throw new LLMParseError('Animation rendering failed.');
                         }
                         scrollToBottom();
                         return;
                     }
 
-                    const data = JSON.parse(jsonStr);
-                    if (data.error) throw new Error(data.error);
+                    let data;
+                    try {
+                        data = JSON.parse(jsonStr);
+                    } catch (err) {
+                        console.error('Failed to parse JSON:', jsonStr);
+                        throw new LLMParseError('Invalid response format from server.');
+                    }
 
+                    if (data.error) {
+                        throw new LLMParseError(data.error);
+                    }
                     const token = data.token || '';
 
                     if (!inCodeBlock && token.includes('```')) {
@@ -165,6 +195,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 showWarning(translations.errorFetchFailed[currentLang]);
             } else if (error.message.includes('status: 429')) {
                 showWarning(translations.errorTooManyRequests[currentLang]);
+            } else if (error instanceof LLMParseError) {
+                showWarning(translations.errorLLMParseError[currentLang]);
             } else {
                 showWarning(translations.errorFetchFailed[currentLang]); // 默认 fallback
             }
@@ -211,7 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
         span.textContent = text;
         codeElement.appendChild(span);
         accumulatedCode += text;
-        
+
         const codeContent = codeElement.closest('.code-content');
         if (codeContent) {
             requestAnimationFrame(() => {
@@ -354,7 +386,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         const savedLang = localStorage.getItem('preferredLanguage');
-        setLanguage(['zh', 'en'].includes(savedLang) ? savedLang : config.defaultLang);
+        const browserLang = navigator.language?.toLowerCase() || ''; // e.g. 'zh-cn'
+
+        let initialLang = 'en'; 
+        if (['zh', 'en'].includes(savedLang)) {
+            initialLang = savedLang;
+        } else if (browserLang.startsWith('zh')) {
+            initialLang = 'zh';
+        } else if (browserLang.startsWith('en')) {
+            initialLang = 'en';
+        }
+
+        setLanguage(initialLang);
     }
 
     init();
