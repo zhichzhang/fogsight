@@ -11,6 +11,8 @@
 
 将雾象部署在本地后，您只需输入词语，点击生成，便可得到动画。
 
+您也可以直接访问网站 fogsight.ai 直接使用，免部署在线生成动画
+
 
 <p align="center">
   <img src="https://github.com/hamutama/caimaopics/raw/main/fogsight/1.png"
@@ -79,7 +81,7 @@
 
 * Python 3.9+  
 * 一个现代网络浏览器 (如 Chrome, Firefox, Edge)  
-* 大语言模型的 API 密钥。我们推荐您使用 Google Gemini 2.5。  
+* 大语言模型的 API 密钥。我们仅推荐您使用 Google Gemini 2.5。  
 
 ### 安装与运行
 
@@ -167,9 +169,6 @@
    docker-compose down
    ```
 
-## OpenRouter 支持
-
-Fogsight 完全支持 OpenRouter，但是我们只推荐您使用Google Gemini 2.5 pro模型。
 
 ## 联系我们/加入群聊
 
@@ -185,6 +184,7 @@ Fogsight 完全支持 OpenRouter，但是我们只推荐您使用Google Gemini 2
 ### WaytoAGI 社区
 
 * [@richkatchen 陈财猫](https://okjk.co/enodyA) - WaytoAGI 社区成员
+* [@shuyan-5200](https://github.com/shuyan-5200) - WaytoAGI 社区成员
 * [@kk](https://okjk.co/zC8myE) - WaytoAGI 社区成员
 
 ### Index Future Lab
@@ -197,11 +197,11 @@ Fogsight 完全支持 OpenRouter，但是我们只推荐您使用Google Gemini 2
 
 ### 独立开发者与 AI 艺术家
 
-* [@shuyan-5200](https://github.com/shuyan-5200)
+* [@Lixin Cai 蔡李鑫](https://github.com/Lixin-Cai)
 * [王如玥 (@Ruyue Wang)](https://github.com/Moonywang)
 * [@Jack-the-Builder](https://github.com/Jack-the-Builder)
 * [@xiayurain95](https://github.com/xiayurain95)
-* [@Lixin Cai 蔡李鑫](https://github.com/Lixin-Cai)
+
 
 ## 开源许可
 
