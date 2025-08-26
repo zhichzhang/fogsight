@@ -192,6 +192,7 @@ Join the discussion via **[this link](https://fogsightai.feishu.cn/wiki/WvODwyUr
 
 * [@taited](https://taited.github.io/) – PhD Student, CUHK (Shenzhen)
 * [@yjydya](https://github.com/ydyjya) – PhD Student, Nanyang Technological University
+* [@zhichzhang](https://github.com/zhichzhang) - Master Student, University of Southern California (Responsible for rebuilding the online demo website using React)
 
 ### WaytoAGI Community
 
