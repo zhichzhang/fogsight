@@ -180,6 +180,7 @@
 
 * [@taited](https://taited.github.io/) - 香港中文大学（深圳） 博士生
 * [@yjydya](https://github.com/ydyjya) - 南洋理工大学 博士生
+* [@zhichzhang](https://github.com/zhichzhang) - 南加州大学 硕士生 （负责用React重构在线体验版本网页）
 
 ### WaytoAGI 社区
 
