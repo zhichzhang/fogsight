@@ -7,18 +7,18 @@
        width="300">
 </p>
 
+
+
 **雾象是一款由大型语言模型（LLM）驱动的动画引擎 agent 。用户输入抽象概念或词语，雾象会将其转化为高水平的生动动画。**
 
 将雾象部署在本地后，您只需输入词语，点击生成，便可得到动画。
 
 您也可以直接访问网站 fogsight.ai 直接使用，免部署在线生成动画
 
-
 <p align="center">
-  <img src="https://github.com/hamutama/caimaopics/raw/main/fogsight/1.png"
-       alt="UI 截图"
-       width="550">
+  <img  width="550" alt="UI" src="https://github.com/user-attachments/assets/71f1574e-bf26-4869-aa16-925e1c2276a7" />
 </p>
+
 
 我们设计了易用的语言用户界面（Language User Interface），用户也可以**进一步轻松编辑或改进生成动画，做到言出法随**。
 
@@ -180,7 +180,7 @@
 
 * [@taited](https://taited.github.io/) - 香港中文大学（深圳） 博士生
 * [@yjydya](https://github.com/ydyjya) - 南洋理工大学 博士生
-* [@zhichzhang](https://github.com/zhichzhang) - 南加州大学 硕士生 （负责用React重构在线体验版本网页）
+* [@zhichzhang](https://github.com/zhichzhang) - 南加州大学 硕士生
 
 ### WaytoAGI 社区
 
