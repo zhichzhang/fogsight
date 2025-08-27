@@ -12,7 +12,7 @@ Give it an abstract concept or a single word and it will transform it into a hig
 Once Fogsight is deployed locally, simply enter a word and click **Generate** to watch the animation appear.
 
 <p align="center">
-  <img src="https://github.com/hamutama/caimaopics/raw/main/fogsight/1.png"
+  <img src="https://github.com/user-attachments/assets/ee2f459b-110d-4f10-8ead-f873b10d494b"
        alt="UI Screenshot"
        width="550">
 </p>
@@ -192,7 +192,7 @@ Join the discussion via **[this link](https://fogsightai.feishu.cn/wiki/WvODwyUr
 
 * [@taited](https://taited.github.io/) – PhD Student, CUHK (Shenzhen)
 * [@yjydya](https://github.com/ydyjya) – PhD Student, Nanyang Technological University
-* [@zhichzhang](https://github.com/zhichzhang) - Master Student, University of Southern California (Responsible for rebuilding the online demo website using React)
+* [@zhichzhang](https://github.com/zhichzhang) - Master Student, University of Southern California
 
 ### WaytoAGI Community
 
