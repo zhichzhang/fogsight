@@ -1,7 +1,7 @@
 # Fogsight [**English**](./readme.md) | [**中文**](./readme_cn.md)
 
-> This is a forked repository showcasing my leadership and impact in frontend development for the project.  
-> Please follow the [link](https://github.com/fogsightai/fogsight) to view the original repository.
+> This is a forked repository showcasing my leadership and key contributions to frontend development in this project.  
+> Please follow [this link](https://github.com/fogsightai/fogsight) to view the original repository, or visit the deployed version at [Fogsight.ai](https://fogsight.ai).
 
 <p align="center">
   <img src="https://github.com/hamutama/caimaopics/raw/main/fogsight/logos/fogsight_logo_white_bg.png"
