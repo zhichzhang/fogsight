@@ -1,4 +1,4 @@
-# Fogsight [**English**](./readme.md) | [**中文**](./readme_cn.md)
+# Fogsight (雾象) [**English**](./readme.md) | [**中文**](./readme_cn.md)
 
 > This is a **forked repository** showcasing my leadership and key contributions to frontend development in this project. Please follow [this link](https://github.com/fogsightai/fogsight) to view the original repository, or visit the deployed version at [Fogsight.ai](https://fogsight.ai).
 >   
