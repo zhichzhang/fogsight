@@ -1,7 +1,14 @@
 # Fogsight [**English**](./readme.md) | [**中文**](./readme_cn.md)
 
-> This is a forked repository showcasing my leadership and key contributions to frontend development in this project.  
-> Please follow [this link](https://github.com/fogsightai/fogsight) to view the original repository, or visit the deployed version at [Fogsight.ai](https://fogsight.ai).
+> This is a **forked repository** showcasing my leadership and key contributions to frontend development in this project. Please follow [this link](https://github.com/fogsightai/fogsight) to view the original repository, or visit the deployed version at [Fogsight.ai](https://fogsight.ai).
+>   
+> **My key contributions are listed as follows**:  
+> 1. Launched Fogsight, a production-ready AI animation-generation platform powered by LLMs, earning 890+ GitHub stars and
+attracting thousands of active users.
+> 2. Migrated a legacy bilingual HTML/CSS/JavaScript site to a modern, multilingual React + TypeScript + Vite app, revamping a responsive master-detail layout with dynamic Query and Chat page switching.  
+> 3. Reduced server requests by 90% and retrieval latency by 95% through full conversation lifecycle management using normalized, indexed IndexedDB object stores, persisting 300–600 messages client-side with monitored storage.  
+> 4. Developed a chat interface using React Hooks and Refs with auto-scroll, real-time indicators, accessible interactive code blocks, animation previews, and frontend HTML-to-video recording, while preventing cross-session state leakage.
+
 
 <p align="center">
   <img src="https://github.com/hamutama/caimaopics/raw/main/fogsight/logos/fogsight_logo_white_bg.png"
