@@ -1,7 +1,7 @@
 # Fogsight (雾象) [**English**](./readme_en.md) | [**中文**](./readme.md)
 
-> 这是一个用于展示我在该项目中前端开发方面的核心貢獻的 fork 仓库。  
-> 请点击[链接](https://github.com/fogsightai/fogsight)查看原始仓库。
+> 这是一个用于展示我在该项目中前端开发的核心贡献 fork 仓库 。   
+> 请点击[此链接](https://github.com/fogsightai/fogsight)查看原始仓库，或访问已部署版本 [Fogsight.ai](https://fogsight.ai)。
 
 <p align="center">
   <img src="https://github.com/hamutama/caimaopics/raw/main/fogsight/logos/fogsight_logo_white_bg.png"
