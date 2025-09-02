@@ -2,7 +2,7 @@
 
 > 这是一个展示了我在该项目中前端开发的领导力和核心贡献的 **fork 仓库**。请点击 [此链接](https://github.com/fogsightai/fogsight) 查看原始仓库，或访问已部署版本 [Fogsight.ai](https://fogsight.ai)。
 >
-> 官方贡献证明请参考原始 Fogsight 仓库中的 [**Contributors**](https://github.com/fogsightai/fogsight?tab=readme-ov-file#contributors) 部分。
+> 我的官方贡献证明请参考原始 Fogsight 仓库中的 [**Contributors**](https://github.com/fogsightai/fogsight?tab=readme-ov-file#contributors) 部分。
 > 
 > **我的主要贡献如下**：  
 > 1. 推出了 Fogsight，一款由大语言模型驱动的生产级 AI 动画生成平台，获得了 890+ GitHub 星标，并吸引了数千活跃用户。  
