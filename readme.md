@@ -5,11 +5,10 @@
 > For official proof of my contributions, please refer to the [**Contributors**](https://github.com/fogsightai/fogsight?tab=readme-ov-file#contributors) section in the original Fogsight repository.
 >   
 > **My key contributions are listed as follows**:  
-> 1. Launched Fogsight, a production-ready AI animation-generation platform powered by LLMs, earning 890+ GitHub stars and
-attracting thousands of active users.
-> 2. Migrated a legacy bilingual HTML/CSS/JavaScript site to a modern, multilingual React + TypeScript + Vite app, revamping a responsive master-detail layout with dynamic Query and Chat page switching.  
-> 3. Reduced server requests by 90% and retrieval latency by 95% through full conversation lifecycle management using normalized, indexed IndexedDB object stores, persisting 300–600 messages client-side with monitored storage.  
-> 4. Developed a chat interface using React Hooks and Refs with auto-scroll, real-time indicators, accessible interactive code blocks, animation previews, and frontend HTML-to-video recording, while preventing cross-session state leakage.
+> 1. Launched Fogsight, a production-ready SaaS AI animation platform powered by LLMs, containerized with Docker and managed via cloud-ready APIs, earning 950+ GitHub stars and attracting thousands of active users.
+> 2. Orchestrated the migration of a legacy bilingual HTML/CSS/JavaScript site to a modern, multilingual React + TypeScript + Vite app, revamping a responsive master-detail layout with dynamic Query and Chat page switching and driving 28% user growth.  
+> 3. Reduced server requests by 90% and retrieval latency by 95% through full conversation lifecycle management using normalized, indexed IndexedDB object stores, with monitored capacity scaling to 600+ messages per session without performance loss.
+> 4. Collaborated with UX designers to implement a React Hooks & Refs-based chat interface with auto-scroll, interactive live code viewers, animation previews, and HTML animation-to-video conversion, ensuring seamless UX while preventing state leakage.
 
 
 <p align="center">
