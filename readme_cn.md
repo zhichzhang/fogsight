@@ -5,7 +5,7 @@
 > 我的官方贡献证明请参考原始 Fogsight 仓库中的 [**Contributors**](https://github.com/fogsightai/fogsight?tab=readme-ov-file#contributors) 部分。
 > 
 > **我的主要贡献如下**：  
-> 1. 推出了 Fogsight，一款由大语言模型驱动的生产级 AI 动画生成平台，获得了 890+ GitHub 星标，并吸引了数千活跃用户。  
+> 1. 推出了 Fogsight，一款由大语言模型驱动的生产级 AI 动画生成平台，获得了 1.2k+ GitHub 星标，并吸引了数千活跃用户。  
 > 2. 将一个遗留的双语 HTML/CSS/JavaScript 网站迁移到现代化、多语言的 React + TypeScript + Vite 应用，重构了响应式主从布局，并实现动态的 Query 与 Chat 页面切换。  
 > 3. 通过使用标准化、带索引的 IndexedDB 对象存储管理完整对话生命周期，将客户端消息持久化 300–600 条，减少了 90% 的服务器请求，并将数据检索延迟降低 95%。  
 > 4. 开发了聊天界面，使用 React Hooks 和 Refs 实现自动滚动、实时状态指示、可访问的交互式代码块、动画预览以及前端 HTML 转视频录制，同时防止跨会话状态泄漏。
