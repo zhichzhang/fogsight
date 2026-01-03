@@ -1,6 +1,6 @@
 # Fogsight (雾象) [**English**](./readme.md) | [**中文**](./readme_cn.md)
 
-> This is a **forked repository** showcasing my leadership and key contributions to frontend development in this project. Please follow [this link](https://github.com/fogsightai/fogsight) to view the original repository, or visit the deployed version at [**Fogsight.ai**](https://fogsight.ai).
+> This is a **forked repository** showcasing my leadership and key contributions to development in this project. Please follow [this link](https://github.com/fogsightai/fogsight) to view the original repository, or visit the deployed version at [**Fogsight.ai**](https://fogsight.ai).
 >
 > For official proof of my contributions, please refer to the [**Contributors**](https://github.com/fogsightai/fogsight/blob/master/readme_en.md#contributors) section in the original Fogsight repository.
 >   
